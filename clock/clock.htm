@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+        @keyframes ModeToggleWhite {
+            from {
+                background-color:#3F3F3F ;
+            }
+            to {
+                background-color: white;
+            }
+        }
+        @keyframes ModeToggleBlack {
+            from {
+                background-color:white ;
+            }
+            to {
+                background-color: #3F3F3F ;
+            }
+        }
+
+        body {
+            font-family: 'Orbitron';
+        }
+
+        .main {
+            margin-top: 35vh;
+            margin-left: 30vh;
+            margin-right: 50vh;
+            padding: 5px;
+            padding-left: 10px;
+            background-color: #3F3F3F;
+            width: 810px;
+            border-radius: 20px;
+        }
+
+        .txt {
+            font-size: 41px;
+            font-family: cursive;
+        }
+
+        .time {
+            border: 2px solid white;
+            background-color: #3F3F3F;
+            color: white;
+            padding-right: 54px;
+            padding-left: 23px;
+            max-width: 800px;
+            min-width: 300px;
+            border-radius: 20px;
+            display: flex;
+        }
+
+        .tim {
+            font-size: 161px;
+        }
+
+        body {
+            background-color: #3F3F3F;
+        }
+
+        .button {
+            position: relative;
+            background-color: #3F3F3F;
+            border: 0px;
+            bottom: 0px;
+            right: -550px;
+            top: -410px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="time" id="tim">
+            <span class="hour tim"></span>
+            <span class="minute tim"></span>
+            <span class="second tim"></span>
+        </div>
+    </div>
+    <button class="button" id="btn">
+        <img id='img' src="theme-black.png"  width="120px" alt="">
+    </button>
+    <script>
+        setInterval(() => {
+            let date = new Date()
+            let h = date.getHours()
+            let m = date.getMinutes()
+            let s = date.getSeconds()
+            let ho = document.getElementsByClassName('hour')[0]
+            ho.innerHTML = h + ':'
+            let min = document.getElementsByClassName('minute')[0]
+            min.innerHTML = m + ':'
+            let sec = document.getElementsByClassName('second')[0]
+            sec.innerHTML = s
+        }, 1000);
+        function click() {
+            if (document.getElementById('img').src == 'http://127.0.0.1:3002/projects/clock/theme-black.png') {
+                document.body.style.backgroundColor = 'white'
+                document.getElementById('img').src = 'theme-white.png'
+                document.getElementById('btn').style.backgroundColor = 'white'
+                document.getElementById('tim').style.backgroundColor = 'white'
+                document.getElementById('tim').style.color = '#3F3F3F'
+                document.body.style.animation='ModeToggleWhite 3s'
+                document.getElementById('tim').style.animation='ModeToggleWhite 2s'
+            }
+            else {
+                document.body.style.backgroundColor = '#3F3F3F'
+                document.getElementById('img').src = 'theme-black.png'
+                document.getElementById('btn').style.backgroundColor = '#3F3F3F'
+                document.getElementById('tim').style.backgroundColor = '#3F3F3F'
+                document.getElementById('tim').style.color = 'white'
+                document.body.style.animation='ModeToggleBlack 3s'
+                document.getElementById('tim').style.animation='ModeToggleBlack 2s'
+            }
+        }
+        document.getElementById('btn').addEventListener('click', click)
+    </script>
+</body>
+
+</html>
